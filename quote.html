@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#fffaf2">
+<title>Get a Free Quote | Rainline Gutter Care, Salem</title><meta name="description" content="Tell our small Salem crew about your gutters. A few simple questions. A free quote. No pressure.">
+<link rel="icon" href="logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script src="config.js" defer></script><script src="script.js" defer></script><script src="quote.js" defer></script>
+</head><body class="quote-page">
+<a class="skip-link" href="#quote-form">Skip to quote form</a>
+<header class="quote-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="Rainline Gutter Care home"><img src="logo.svg" width="44" height="44" alt=""><span><strong data-brand>rainline</strong><small>GUTTER CARE · SALEM, OR</small></span></a><a class="back-home" href="index.html">← Back home</a></div></header>
+<main class="container quote-layout">
+<aside class="quote-aside"><p class="eyebrow">HEY, NEIGHBOR.</p><h1>Let’s clear<br> those gutters.</h1><p>Tell us a little about your place. We’ll get back to you with the next steps.</p><img class="quote-aside-photo" src="salem-home.jpg" alt="Illustrative Oregon home surrounded by autumn greenery" width="1536" height="1024"><ul class="aside-points"><li>Free quote. No pressure.</li><li>No payment or booking today.</li><li>Not sure about a detail? Just say so.</li></ul><p class="aside-note">A small crew, right here in Salem.<br>Thanks for checking us out.</p></aside>
+<div class="quote-panel">
+<noscript><p class="form-error">Please enable JavaScript to use this quote form. Nothing has been sent.</p></noscript>
+<ol class="quote-progress" aria-label="Quote progress"><li class="active" aria-current="step">Your home</li><li>About you</li><li>Quick check</li></ol>
+<p class="form-error" id="form-error" role="alert" hidden></p>
+<form id="quote-form" novalidate>
+<div class="honeypot" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+<section class="quote-step" data-step="0" aria-labelledby="step-title-0">
+<h2 id="step-title-0" tabindex="-1">What’s your home like?</h2><p class="step-intro">Just the basics. No measuring tape needed.</p>
+<fieldset class="quote-fieldset"><legend>How many stories?</legend><div class="choice-grid">
+<label class="choice"><input type="radio" name="stories" value="1 story" required><span class="choice-box"><span class="choice-icon" aria-hidden="true">⌂</span><strong>1 story</strong><small>Single level</small></span></label>
+<label class="choice"><input type="radio" name="stories" value="2 stories"><span class="choice-box"><span class="choice-icon" aria-hidden="true">⌂</span><strong>2 stories</strong><small>Two levels</small></span></label>
+<label class="choice"><input type="radio" name="stories" value="3+ stories / unsure"><span class="choice-box"><span class="choice-icon" aria-hidden="true">⌂</span><strong>3+ / unsure</strong><small>That’s okay!</small></span></label>
+</div></fieldset>
+<div class="input-field"><label for="zip">Your ZIP code</label><input id="zip" name="zip" autocomplete="postal-code" inputmode="numeric" placeholder="e.g. 97301" pattern="[0-9]{5}(-[0-9]{4})?" maxlength="10" required aria-describedby="zip-hint"><small id="zip-hint" class="field-hint">We focus on Salem. We’ll confirm we can get to you.</small></div>
+<div class="input-field"><label for="service">What do you need?</label><select id="service" name="service"><option value="Gutter cleaning">A gutter cleanout</option><option value="Downspout concern">Help with a blocked downspout</option><option value="Seasonal gutter care">A regular cleaning plan</option><option value="Not sure — please advise">Not sure — can you help?</option></select></div>
+<div class="input-field"><label for="notes">Anything else? <span class="optional">(optional)</span></label><textarea id="notes" name="notes" rows="3" maxlength="1200" placeholder="Overflowing gutters? Gutter guards? A tricky side yard? Let us know."></textarea></div>
+</section>
+<section class="quote-step" data-step="1" aria-labelledby="step-title-1" hidden>
+<h2 id="step-title-1" tabindex="-1">How can we reach you?</h2><p class="step-intro">We’ll only use this to talk about your quote.</p>
+<div class="input-field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="Your name" maxlength="100" required></div>
+<div class="input-field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required></div>
+<div class="input-field"><label for="phone">Phone number <span class="optional">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" maxlength="30"></div>
+<div class="input-field"><label for="address">Street address <span class="optional">(optional for now)</span></label><input id="address" name="address" autocomplete="address-line1" placeholder="Helps us get a better idea of the job" maxlength="200"></div>
+<div class="input-field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2" placeholder="Salem" maxlength="100" required></div>
+<p class="field-hint">We’ll start with an email. No marketing list.</p>
+</section>
+<section class="quote-step" data-step="2" aria-labelledby="step-title-2" hidden>
+<h2 id="step-title-2" tabindex="-1">All look right?</h2><p class="step-intro">A quick check, and you’re done.</p>
+<section class="review-section"><div class="review-heading"><h3>Your home</h3><button class="edit-step" type="button" data-edit="0" aria-label="Edit your home details">Edit</button></div><dl><dt>Home</dt><dd data-summary="stories"></dd><dt>ZIP code</dt><dd data-summary="zip"></dd><dt>Service</dt><dd data-summary="service"></dd><dt>Notes</dt><dd data-summary="notes"></dd></dl></section>
+<section class="review-section"><div class="review-heading"><h3>About you</h3><button class="edit-step" type="button" data-edit="1" aria-label="Edit your contact details">Edit</button></div><dl><dt>Name</dt><dd data-summary="name"></dd><dt>Email</dt><dd data-summary="email"></dd><dt>Phone</dt><dd data-summary="phone"></dd><dt>Address</dt><dd data-summary="location"></dd></dl></section>
+<label class="checkbox-line"><input type="checkbox" id="consent" name="consent" required><span>It’s okay for <span data-business>Rainline Gutter Care</span> to contact me about this quote. I know this isn’t a booking. <a href="privacy.html" target="_blank" rel="noopener">Privacy details</a>.</span></label>
+</section>
+<div class="form-nav"><button class="back-button" id="previous" type="button" hidden>← Back</button><button class="button" id="next" type="submit">Continue <span aria-hidden="true">→</span></button></div>
+</form>
+<section class="success-state" id="success" aria-labelledby="success-title" hidden><div class="success-icon" aria-hidden="true">✓</div><h2 id="success-title" tabindex="-1">That’s the whole form!</h2><p id="success-copy"></p><div class="demo-notice" id="success-demo"><strong>This was a practice run.</strong> Nothing was sent and nothing was booked. You can save a copy of your answers below.</div><div class="success-actions"><button type="button" class="button" id="download-summary">Save my answers <span aria-hidden="true">↓</span></button><a href="index.html" class="text-link">Back home <span aria-hidden="true">→</span></a><button type="button" class="back-button" id="restart">Start again</button></div></section>
+<p class="demo-notice" id="demo-notice" hidden><strong>Just trying it out?</strong> This is a demo for now. Nothing you enter gets sent.</p>
+<p class="quote-bottom-note">Free quote. No payment today. <a href="privacy.html">Privacy details</a></p>
+</div></main>
+<footer class="container quote-footer"><span>© <span data-year>2026</span> <span data-business>Rainline Gutter Care</span> · Salem, Oregon</span><a href="privacy.html">Privacy</a></footer>
+</body></html>
