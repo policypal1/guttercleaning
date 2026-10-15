@@ -1,46 +1,29 @@
-# Salem Gutter Pros - one-page website
+# SALEM GUTTER PROS - READY TO UPLOAD
 
-A clean, fast, responsive one-page website for **Salem Gutter Pros**.
+Everything in this ZIP is at the **top level**. There is **no assets folder** and no `assets/` in the code.
+
+## Use with GitHub Pages or regular hosting
+1. Extract ZIP.
+2. Upload **all files together** in the root of your repository / website folder. **Do not upload just index.html**; add every `.webp`, `.png`, `.svg`, `.css`, and `.js` file too.
+3. Make sure `index.html` is at the root. On GitHub Pages, choose deployment **from a branch** and select `/ (root)`.
+4. Open the deployed site and test images, links, navigation, and quote text on a phone.
 
 ## Files
+- `index.html`: complete one-page website, with relative same-folder image paths
+- `style.css`: styling for desktop, tablet and mobile
+- `script.js`: mobile menu and quote form SMS flow
+- `logo.png`: transparent original-logo colors (dark text), best on light surfaces
+- `logo-header.png`: transparent white-text logo for the dark header/footer
+- `favicon.svg`: browser icon
+- `.webp` files: site photos, including 4 additional close-up gallery images
 
-- `index.html` - the entire page, SEO metadata, and quote form
-- `style.css` - all design and responsive styles
-- `script.js` - mobile navigation and text-message quote flow
-- `assets/` - the hero and service WebP images plus favicon
+## How leads work
+The quote form currently prepares a text message addressed to **503-569-4291**, not an email or database submission. The visitor must tap **Send** in their messaging app. The site also offers clickable `tel:` phone links. Test that the phone number receives SMS messages. Some computers cannot open SMS links and customers can instead copy their request.
 
-## Run locally
+## Before advertising
+- Confirm business name availability, services, service area and the adult operator's insurance / safety requirements.
+- Replace illustrative/generated photos with actual work images as you collect them; don't present these as real completed jobs.
+- A custom-domain Open Graph image should be an absolute HTTPS URL rather than a relative path.
+- Add a proper lead delivery integration, if you want direct online submissions instead of customer-sent texts.
 
-You can double-click `index.html` to preview the site. For the most accurate preview, serve the folder with a local HTTP server, e.g. `python3 -m http.server 8080`, and visit `http://localhost:8080`.
-
-## Upload / launch
-
-Upload **all the contents** of this folder together to your web host or GitHub Pages repository. Keep `index.html` at the repository/site root, and preserve the `assets/` folder and filenames. No build step, Node.js, or frameworks are needed.
-
-## Important: how the form works
-
-There is **no backend and no email address was supplied**. So the quote form does *not* save leads to a database or send email. After a visitor enters a name and location, the form prepares a text message addressed to **(503) 569-4291** and attempts to open the device's SMS app. The customer must press Send. There is a fallback **Copy Request** option. If this number cannot receive texts, replace the SMS flow with a real form backend before publishing.
-
-If you want an actual online lead form later, connect an email/form provider (Netlify Forms, Formspree, your own backend, etc.), adjust the form submission code, test, and add a privacy notice explaining where customer details go.
-
-## Changes to make before advertising
-
-1. Confirm you want to use the working business name **Salem Gutter Pros** and verify name/domain availability.
-2. Confirm 503-569-4291 receives both calls and texts. There are 5 telephone links and SMS logic using this number.
-3. Verify your precise service area, actual services, job capacity, insurance and under-18 labor requirements before taking gutter jobs.
-4. Replace illustrative images with photos of your **actual work** when available. Do not claim stock/illustrative images are customer jobs.
-5. If you connect a custom domain, change `og:image` to an absolute HTTPS URL and add your domain to your SEO tools.
-6. Test the quote flow on an iPhone, an Android phone, and desktop. SMS URI behavior varies by OS.
-7. For a business with an online lead form, provide a proper privacy policy before enabling data collection.
-
-## Design notes
-
-- Forest green, warm white, charcoal, and soft spring-green highlights
-- Full-bleed autumn home image with a dark gradient hero
-- Light services > dark story > light steps > dark quote section
-- Mobile-first CTAs and sticky call/quote bar
-- No invented reviews, years of experience, certification badges, or insurance claims
-
-## Images
-
-The five WebP assets were created from illustrative generated imagery for this site. They are **not photos of real Salem Gutter Pros jobs**. The `assets/salem-home-autumn.webp` asset shows a conceptual residential exterior, and the other assets are illustrative gutter imagery. Update with authentic project photos as soon as you have them.
+Static site, no npm / build step / external image dependencies. Fonts are fetched from Google Fonts when online and fallback fonts are provided.
