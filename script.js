@@ -1,17 +1,13 @@
-/* Salem Gutter Pros - minimal vanilla JS, no frameworks or backend required. */
+/* Salem Gutter Pros | mobile menu and conversion-first quote wizard */
 const menuToggle = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
-
 function setMenu(open) {
   menuToggle.setAttribute('aria-expanded', String(open));
   menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   mobileMenu.hidden = !open;
   document.body.classList.toggle('menu-open', open);
 }
-
-menuToggle.addEventListener('click', () => {
-  setMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
-});
+menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
 mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
 window.addEventListener('resize', () => {
   if (window.innerWidth > 800 && menuToggle.getAttribute('aria-expanded') === 'true') setMenu(false);
@@ -19,56 +15,104 @@ window.addEventListener('resize', () => {
 document.getElementById('year').textContent = String(new Date().getFullYear());
 
 const form = document.getElementById('quote-form');
-const formResult = document.getElementById('form-result');
-const formStatus = document.getElementById('form-status');
+const panels = Array.from(form.querySelectorAll('.quote-step'));
+const stepCount = document.getElementById('step-count');
+const progressBar = document.getElementById('quote-progress-fill');
+const result = document.getElementById('form-result');
+const resultStatus = document.getElementById('form-status');
+const summary = document.getElementById('request-summary');
 const openSMS = document.getElementById('open-sms');
 const copyRequest = document.getElementById('copy-request');
+let currentStep = 0;
 let preparedMessage = '';
 
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
-
-  const name = document.getElementById('customer-name').value.trim();
-  const area = document.getElementById('customer-area').value.trim();
-  const home = document.getElementById('customer-home').value;
-  const notes = document.getElementById('customer-notes').value.trim();
-  if (!name || !area) { formStatus.textContent = 'Please enter your name and city or ZIP code.'; formResult.hidden = false; return; }
-
-  preparedMessage = `Hi Salem Gutter Pros! I'd like a free gutter cleaning quote.\nName: ${name}\nCity/ZIP: ${area}\nHome: ${home}${notes ? `\nDetails: ${notes}` : ''}`;
-  const encoded = encodeURIComponent(preparedMessage);
-  // Mobile browsers use slightly different SMS URL conventions.
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const smsURL = `sms:+15035694291${isIOS ? '&' : '?'}body=${encoded}`;
-  openSMS.href = smsURL;
-  formResult.hidden = false;
-  const isLikelyMobile = /Android|iPad|iPhone|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  formStatus.textContent = isLikelyMobile
-    ? 'Your request is ready. Review it in Messages and press Send. If Messages does not open, copy your request instead.'
-    : 'Your request is ready. Copy it and text it to (503) 569-4291, or use Open Messages if your computer supports texting.';
-  copyRequest.textContent = 'Copy Request';
-  // Open only from this explicit user gesture and only on mobile devices.
-  if (isLikelyMobile) window.location.href = smsURL;
+function showStep(index, focus = false) {
+  currentStep = Math.max(0, Math.min(panels.length - 1, index));
+  panels.forEach((panel, i) => { panel.hidden = i !== currentStep; });
+  result.hidden = true;
+  stepCount.textContent = `${String(currentStep + 1).padStart(2,'0')} / 04`;
+  progressBar.style.width = `${(currentStep + 1) * 25}%`;
+  if (focus) {
+    const h = panels[currentStep].querySelector('h4');
+    if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true}); }
+  }
+}
+function inputsOn(panel) {
+  return Array.from(panel.querySelectorAll('input,textarea,select'));
+}
+function validStep() {
+  const visible = panels[currentStep];
+  for (const input of inputsOn(visible)) {
+    if (input.type === 'radio') {
+      const group = form.querySelectorAll(`input[name="${input.name}"]`);
+      if (![...group].some(r => r.checked)) { group[0].reportValidity(); return false; }
+      continue;
+    }
+    if (input.required && !input.value.trim()) { input.setCustomValidity('Please complete this field.'); input.reportValidity(); input.setCustomValidity(''); return false; }
+    if (!input.checkValidity()) { input.reportValidity(); return false; }
+  }
+  if (currentStep === 3) {
+    const phone = document.getElementById('customer-phone');
+    if (phone.value.replace(/\D/g, '').length < 10) {
+      phone.setCustomValidity('Please enter a valid phone number.');
+      phone.reportValidity();phone.setCustomValidity('');return false;
+    }
+  }
+  return true;
+}
+form.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', () => {
+  if (validStep()) showStep(currentStep + 1, true);
+}));
+form.querySelectorAll('[data-back]').forEach(btn => btn.addEventListener('click', () => showStep(currentStep - 1, true)));
+form.querySelectorAll('input[name="home"]').forEach(radio => radio.addEventListener('change', () => {
+  if (currentStep === 0 && validStep()) showStep(1, true);
+}));
+form.querySelectorAll('input:not([type="radio"])').forEach(input => {
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && currentStep < 3) {
+      e.preventDefault(); if (validStep()) showStep(currentStep + 1, true);
+    }
+  });
 });
-
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!validStep()) return;
+  const get = id => document.getElementById(id).value.trim();
+  const home = form.querySelector('input[name="home"]:checked');
+  const address = get('customer-address'), area = get('customer-area');
+  const name = get('customer-name'), phone = get('customer-phone'), notes = get('customer-notes');
+  if (!home || !address || !area || !name || !phone) return;
+  preparedMessage = `Hi Salem Gutter Pros! I'd like a free gutter cleaning quote.\n\nName: ${name}\nPhone: ${phone}\nProperty: ${home.value}\nAddress: ${address}, ${area}${notes ? `\nNotes: ${notes}` : ''}`;
+  // SMS message is not sent automatically. The customer must press Send.
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const sep = isIOS ? '&' : '?';
+  const url = `sms:+15035694291${sep}body=${encodeURIComponent(preparedMessage)}`;
+  openSMS.href = url;
+  summary.textContent = preparedMessage;
+  result.hidden = false;
+  panels.forEach(panel => { panel.hidden = true; });
+  stepCount.textContent = 'READY';
+  progressBar.style.width = '100%';
+  copyRequest.textContent = 'Copy Request';
+  resultStatus.textContent = 'Your details are prepared. Open your Messages app and press Send, or copy the request and text it to (503) 569-4291.';
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) window.location.href = url;
+});
+const edit = document.getElementById('edit-request');
+edit.addEventListener('click', () => showStep(3, true));
 copyRequest.addEventListener('click', async () => {
   if (!preparedMessage) return;
   try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(preparedMessage);
-    } else {
-      const helper = document.createElement('textarea');
-      helper.value = preparedMessage;
-      helper.style.position = 'fixed';
-      helper.style.opacity = '0';
-      document.body.appendChild(helper);
-      helper.focus(); helper.select();
-      if (!document.execCommand('copy')) throw new Error('Copy unavailable');
-      helper.remove();
+    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(preparedMessage);
+    else {
+      const textarea = document.createElement('textarea');textarea.value = preparedMessage;
+      textarea.style.position = 'fixed';textarea.style.opacity = '0';
+      document.body.appendChild(textarea);textarea.select();
+      if (!document.execCommand('copy')) throw new Error('Clipboard blocked');
+      textarea.remove();
     }
     copyRequest.textContent = 'Copied!';
-    formStatus.textContent = 'Copied! Paste the request into a text message to (503) 569-4291.';
-  } catch (_) {
-    formStatus.textContent = `Copying was blocked by your browser. Send this information to (503) 569-4291: ${preparedMessage}`;
+  } catch (error) {
+    resultStatus.textContent = 'Select and copy the details shown above, then text them to (503) 569-4291.';
   }
 });
+showStep(0);

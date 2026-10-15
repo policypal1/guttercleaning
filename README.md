@@ -1,29 +1,34 @@
-# SALEM GUTTER PROS - READY TO UPLOAD
+# Salem Gutter Pros — Website V3
 
-Everything in this ZIP is at the **top level**. There is **no assets folder** and no `assets/` in the code.
+A responsive, single-page static website for Salem Gutter Pros. No build tools needed.
 
-## Use with GitHub Pages or regular hosting
-1. Extract ZIP.
-2. Upload **all files together** in the root of your repository / website folder. **Do not upload just index.html**; add every `.webp`, `.png`, `.svg`, `.css`, and `.js` file too.
-3. Make sure `index.html` is at the root. On GitHub Pages, choose deployment **from a branch** and select `/ (root)`.
-4. Open the deployed site and test images, links, navigation, and quote text on a phone.
+## Upload
+
+1. Extract `salem-gutter-pros-website-v3.zip`.
+2. Upload the **contents** (not the ZIP itself) to the root of your GitHub Pages or static hosting repository.
+3. Keep every image, SVG, CSS, JS and `index.html` in the **same directory**. There is no assets folder.
+4. Open `index.html` locally to preview, or publish through GitHub Pages.
 
 ## Files
-- `index.html`: complete one-page website, with relative same-folder image paths
-- `style.css`: styling for desktop, tablet and mobile
-- `script.js`: mobile menu and quote form SMS flow
-- `logo.png`: transparent original-logo colors (dark text), best on light surfaces
-- `logo-header.png`: transparent white-text logo for the dark header/footer
-- `favicon.svg`: browser icon
-- `.webp` files: site photos, including 4 additional close-up gallery images
 
-## How leads work
-The quote form currently prepares a text message addressed to **503-569-4291**, not an email or database submission. The visitor must tap **Send** in their messaging app. The site also offers clickable `tel:` phone links. Test that the phone number receives SMS messages. Some computers cannot open SMS links and customers can instead copy their request.
+- `index.html` — full website, main copy and contact details
+- `style.css` — responsive layout, animations and premium hover states
+- `script.js` — mobile navigation and four-step quote wizard
+- `logo.svg` — dark-letter vector wordmark for light backgrounds
+- `logo-white.svg` — white-letter vector wordmark used in header/footer
+- `favicon.svg` — icon using the **same graphic** as both logo variants
+- `brand-icon.svg` — standalone matching icon
+- `*.webp` — local optimized photos, including illustrative conditions in the before/after section
 
-## Before advertising
-- Confirm business name availability, services, service area and the adult operator's insurance / safety requirements.
-- Replace illustrative/generated photos with actual work images as you collect them; don't present these as real completed jobs.
-- A custom-domain Open Graph image should be an absolute HTTPS URL rather than a relative path.
-- Add a proper lead delivery integration, if you want direct online submissions instead of customer-sent texts.
+## IMPORTANT before running ads
 
-Static site, no npm / build step / external image dependencies. Fonts are fetched from Google Fonts when online and fallback fonts are provided.
+The quote form currently PREPARES AN SMS to 503-569-4291. It does **not** submit to a backend, email you automatically, or store contact details on a server. On a phone, customers must press Send in their SMS app. On desktop, they can copy the quote details. To capture every lead from Facebook ads, connect a real submission endpoint or form service BEFORE ads go live.
+
+The before/after section uses illustrative imagery of different homes, not documented before-and-after customer jobs. Replace with genuine paired photos of actual work when available. Do not claim the illustrated photos are customer results.
+
+Confirm age-related restrictions, insurance, and permitted services before accepting jobs.
+
+## Photo and branding changes
+
+Image references in CSS and HTML are bare filenames such as `gutter-leaves.webp`, not `assets/gutter-leaves.webp`.
+The wordmark and favicon are crisp vector graphics and share the same house/gutter/leaf mark.
