@@ -34,7 +34,7 @@
 <a href="#about">About Us</a>
 </nav>
 <a class="nav-quote" href="#quote">Get Free Quote <span aria-hidden="true">→</span></a>
-<a class="nav-mobile-quote" href="#quote">Get Quote <span aria-hidden="true">→</span></a><button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle" type="button">
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle" type="button">
 <span></span><span></span><span></span>
 </button>
 </div>
@@ -42,9 +42,9 @@
 <a href="#services">Services</a>
 <a href="#results">Before &amp; After</a>
 <a href="#how-it-works">How It Works</a>
-<a href="#quote">Get Free Quote</a>
+
 <a href="#about">About Us</a>
-</nav>
+<a class="mobile-menu-cta" href="#quote">Get Free Quote</a></nav>
 </header>
 <main id="main">
 <section aria-labelledby="hero-title" class="hero">
@@ -100,11 +100,11 @@
 <h2 id="services-title">Simple service.<br/><em>One less headache.</em></h2>
 </div>
 </div>
-<div class="service-grid service-grid-photos">
-<article class="service-card"><div class="service-image"><img alt="Fallen leaves collecting in a residential rain gutter" loading="lazy" src="gutter-leaves.webp"/><span class="service-number">01 / GUTTERS</span></div><div class="service-card-body"><h3>Gutter Cleaning</h3><p>Clear leaves, dirt, and debris from accessible residential gutters.</p></div></article>
-<article class="service-card"><div class="service-image"><img alt="Water flowing from a residential downspout" loading="lazy" src="downspout-water.webp"/><span class="service-number">02 / DOWNSPOUTS</span></div><div class="service-card-body"><h3>Downspout Checks</h3><p>Check accessible downspouts and help remove debris restricting water flow.</p></div></article>
-<article class="service-card"><div class="service-image"><img alt="Collected fall leaves and debris from outdoor cleanup" loading="lazy" src="leaf-debris.webp"/><span class="service-number">03 / CLEANUP</span></div><div class="service-card-body"><h3>Debris Cleanup</h3><p>Leave the work area tidy by collecting leaves and other debris we remove.</p></div></article>
-</div>
+<div aria-label="Gutter cleaning services" aria-roledescription="carousel" class="service-grid service-grid-photos" id="service-rail" role="region" tabindex="0">
+<article aria-label="1 of 3: Gutter Cleaning" class="service-card"><div class="service-image"><img alt="Fallen leaves collecting in a residential rain gutter" loading="lazy" src="gutter-leaves.webp"/><span class="service-number">01 / GUTTERS</span></div><div class="service-card-body"><h3>Gutter Cleaning</h3><p>Clear leaves, dirt, and debris from accessible residential gutters.</p></div></article>
+<article aria-label="2 of 3: Downspout Checks" class="service-card"><div class="service-image"><img alt="Water flowing from a residential downspout" loading="lazy" src="downspout-water.webp"/><span class="service-number">02 / DOWNSPOUTS</span></div><div class="service-card-body"><h3>Downspout Checks</h3><p>Check accessible downspouts and help remove debris restricting water flow.</p></div></article>
+<article aria-label="3 of 3: Debris Cleanup" class="service-card"><div class="service-image"><img alt="Collected fall leaves and debris from outdoor cleanup" loading="lazy" src="leaf-debris.webp"/><span class="service-number">03 / CLEANUP</span></div><div class="service-card-body"><h3>Debris Cleanup</h3><p>Leave the work area tidy by collecting leaves and other debris we remove.</p></div></article>
+</div><div aria-label="Browse services" class="service-controls"><button aria-label="Previous service" class="service-arrow" id="service-prev" type="button">←</button><div aria-label="Service selection" class="service-dots"><button aria-current="true" aria-label="View gutter cleaning" class="service-dot is-active" data-service-index="0" type="button"></button><button aria-label="View downspout checks" class="service-dot" data-service-index="1" type="button"></button><button aria-label="View debris cleanup" class="service-dot" data-service-index="2" type="button"></button></div><button aria-label="Next service" class="service-arrow" id="service-next" type="button">→</button></div>
 </div>
 </section>
 <section aria-labelledby="why-title" class="why-section" id="why-us">
@@ -139,19 +139,21 @@
 <div class="kicker"><span></span> FROM CLOGGED TO CLEAR</div>
 <h2 id="results-title">See the <em>difference.</em></h2>
 </div>
-</div>
+</div><div aria-label="Before and after gutter examples" aria-roledescription="carousel" class="comparison-carousel" id="comparison-carousel" role="region" tabindex="0">
+<div aria-label="1 of 2: White residential gutter" class="comparison-slide is-active" data-comparison-index="0">
 <div class="result-pair">
-<article class="result-panel">
-<div class="result-image-wrap"><img alt="Gutter clogged with leaves" src="before-gutter.webp"/><span class="result-tag before">Before</span></div>
-</article>
-<article class="result-panel">
-<div class="result-image-wrap"><img alt="Clean gutter from the same angle" src="after-gutter-realistic.webp"/><span class="result-tag after">After</span></div>
-</article>
-</div><div class="result-pair result-pair-extra">
-<article class="result-panel"><div class="result-image-wrap"><img alt="Closer view of leaf debris collecting in a residential gutter" decoding="async" loading="eager" src="before-downspout.webp"/><span class="result-tag before">Before</span></div></article>
-<article class="result-panel"><div class="result-image-wrap"><img alt="Closer matched-angle view of gutter after major debris is cleared" decoding="async" loading="eager" src="after-downspout.webp"/><span class="result-tag after">After</span></div></article>
+<figure class="result-panel"><div class="result-image-wrap"><img alt="Residential white gutter packed with autumn leaves" loading="eager" src="before-gutter.webp"/><figcaption class="result-tag before">Before</figcaption></div></figure>
+<figure class="result-panel"><div class="result-image-wrap"><img alt="The same residential gutter angle, free of leaf buildup" loading="eager" src="after-first-clean.webp"/><figcaption class="result-tag after">After</figcaption></div></figure>
+</div></div>
+<div aria-label="2 of 2: Dark gutter roof edge" class="comparison-slide" data-comparison-index="1" hidden="">
+<div class="result-pair">
+<figure class="result-panel"><div class="result-image-wrap"><img alt="Dark gutter with leaves along a roof edge" loading="lazy" src="before-dark-gutter.webp"/><figcaption class="result-tag before">Before</figcaption></div></figure>
+<figure class="result-panel"><div class="result-image-wrap"><img alt="Dark gutter edge free of large leaf buildup, illustrative view" loading="lazy" src="after-dark-gutter.webp"/><figcaption class="result-tag after">After</figcaption></div></figure>
+</div></div>
+<div class="comparison-controls"><button aria-label="Previous before-and-after comparison" class="comparison-arrow" id="comparison-prev" type="button">←</button><div aria-label="Choose comparison" class="comparison-dots"><button aria-current="true" aria-label="View white gutter comparison" class="comparison-dot is-active" data-comparison-target="0" type="button"></button><button aria-label="View dark gutter comparison" class="comparison-dot" data-comparison-target="1" type="button"></button></div><button aria-label="Next before-and-after comparison" class="comparison-arrow" id="comparison-next" type="button">→</button></div>
 </div>
-<p class="visual-note">Illustrative gutter cleaning examples, not photographs of completed customer jobs.</p>
+
+<p class="visual-note">Illustrative examples of clogged and clear gutters, not documented results from a completed customer job.</p>
 </div>
 </section>
 <section aria-labelledby="steps-title" class="steps-section" id="how-it-works">
@@ -186,7 +188,7 @@
 <div class="about-image"><img alt="Gloved hands removing leaves from a gutter" loading="lazy" src="gutter-cleaning-detail.webp"/><div class="about-image-tag">LOCAL ROOTS. REAL EFFORT.</div></div>
 <div class="about-copy"><div class="kicker"><span></span> ABOUT SALEM GUTTER PROS</div>
 <h2 id="about-title">Local roots.<br/><em>Hands-on work.</em></h2>
-<p>We’re two local students building Salem Gutter Pros to offer straightforward gutter cleaning in Salem and Keizer. We believe getting a quote should be easy, communication should be clear, and every job deserves attention to detail.</p>
+<p>We’re two local students building Salem Gutter Pros to offer straightforward gutter cleaning in Salem and Keizer. We believe getting a quote should be easy, communication should be clear, and every job deserves attention to detail.</p><p class="about-mobile-description">A local, student-run team serving Salem and Keizer.</p>
 <div class="about-points"><div><strong>Student-run</strong><small>A small local business, built with care.</small></div><div><strong>Salem &amp; Keizer</strong><small>Focused on the neighborhoods we know.</small></div></div>
 <a class="about-link" href="#quote">Tell us about your home <span aria-hidden="true">↗</span></a>
 </div>

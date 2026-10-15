@@ -146,3 +146,71 @@ const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 document.addEventListener("keydown", event => { if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") { setMenu(false); menuToggle.focus(); } });
 document.addEventListener("click", event => { if (menuToggle?.getAttribute("aria-expanded") === "true" && !event.target.closest(".site-header")) setMenu(false); });
+
+/* V8 interactive comparisons, keyboard support, and swipe-friendly mobile services */
+(function () {
+  const carousel = document.getElementById('comparison-carousel');
+  const slides = [...carousel.querySelectorAll('.comparison-slide')];
+  const dots = [...carousel.querySelectorAll('.comparison-dot')];
+  let index = 0;
+  function showComparison(i) {
+    index = (i + slides.length) % slides.length;
+    slides.forEach((slide, j) => { slide.hidden = j !== index; slide.classList.toggle('is-active', j === index); });
+    dots.forEach((dot, j) => {
+      dot.classList.toggle('is-active', j === index);
+      if (j === index) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+  }
+  document.getElementById('comparison-prev').addEventListener('click', () => showComparison(index - 1));
+  document.getElementById('comparison-next').addEventListener('click', () => showComparison(index + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => showComparison(i)));
+  carousel.addEventListener('keydown', e => {
+    if (e.target.closest('button')) return;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault(); showComparison(index + (e.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  let startX = null, startY = null;
+  carousel.addEventListener('touchstart', e => {
+    startX = e.changedTouches[0]?.screenX ?? null;
+    startY = e.changedTouches[0]?.screenY ?? null;
+  }, {passive: true});
+  carousel.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const deltaX = (e.changedTouches[0]?.screenX ?? startX) - startX;
+    const deltaY = (e.changedTouches[0]?.screenY ?? startY) - startY;
+    if (Math.abs(deltaX) > 42 && Math.abs(deltaX) > Math.abs(deltaY)*1.25) showComparison(index + (deltaX < 0 ? 1 : -1));
+    startX = startY = null;
+  }, {passive: true});
+
+  const rail = document.getElementById('service-rail');
+  const cards = [...rail.querySelectorAll('.service-card')];
+  const serviceDots = [...document.querySelectorAll('.service-dot')];
+  let currentService = 0;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function setService(i) {
+    currentService = Math.max(0, Math.min(i, cards.length-1));
+    serviceDots.forEach((dot,j) => {
+      dot.classList.toggle('is-active',j===currentService);
+      if(j===currentService) dot.setAttribute('aria-current','true'); else dot.removeAttribute('aria-current');
+    });
+  }
+  function goService(i) {
+    setService(i);
+    rail.scrollTo({left: cards[currentService].offsetLeft - cards[0].offsetLeft,behavior: reduceMotion?'instant':'smooth'});
+  }
+  document.getElementById('service-prev').addEventListener('click',()=>goService((currentService-1+cards.length)%cards.length));
+  document.getElementById('service-next').addEventListener('click',()=>goService((currentService+1)%cards.length));
+  serviceDots.forEach((dot,i) => dot.addEventListener('click',()=>goService(i)));
+  let raf = null;
+  rail.addEventListener('scroll', () => {
+    if (raf !== null) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      let best=0, min=Infinity;
+      cards.forEach((card,i)=> { const dist=Math.abs(card.offsetLeft-cards[0].offsetLeft-rail.scrollLeft); if(dist<min){min=dist;best=i;} });
+      setService(best);
+      raf=null;
+    });
+  },{passive:true});
+})();
