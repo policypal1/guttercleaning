@@ -1,23 +1,28 @@
-SALEM GUTTER PROS • WEBSITE V8
+SALEM GUTTER PROS | WEBSITE V9
 
-UPLOAD TO GITHUB
-1. Extract this ZIP.
-2. Upload every file at the top level of the ZIP to the root of your GitHub repository.
-3. Commit changes and publish through your hosting provider / GitHub Pages.
-4. Hard-refresh your published site (Ctrl+Shift+R / Cmd+Shift+R).
+All files are in the root of this package. Upload them together to your GitHub Pages repository or other static web host. No build process or /assets folder is required.
 
-WHAT CHANGED
-- Before & After is now a two-slide carousel. Use arrows or dots (swipe on touchscreens).
-- The first comparison now uses a clean image without odd marks.
-- The second comparison uses a visually different dark-gutter example.
-- Services become a swipeable, arrow-controlled carousel on mobile; desktop still shows 3 cards.
-- Mobile hamburger fills the screen with an emphasized Get Free Quote action.
-- Removed top-header Get Quote button only on mobile, along with mobile hero location eyebrow.
-- Moved the About Us heading above the photo on mobile and shortened mobile-only text.
-- Preserved all other approved V7 site sections and layout.
+Main files:
+  index.html         Page markup
+  style.css          Layout, visual styling, responsive behavior
+  script.js          Mobile dropdown, service & comparison carousels, quote flow
+  logo-header.png    Logo displayed over dark header/footer
+  logo-dark.png      Alternate logo for light use
+  favicon.png        Site icon
+  *.webp             Local images (no remote hosting required)
 
-IMPORTANT
-- Before / After images are illustrative, not photographs of completed customer jobs or documented transformations. The second slide uses different illustrative views.
-- The quote form opens a prepared text message to (503) 569-4291. Visitors must press Send. The site does NOT automatically submit a lead to a backend.
-- Replace demo photos with your own documented work before presenting any examples as actual client results.
-- All files use root-relative local filenames; no assets folder is needed.
+Latest updates:
+  - Seven user-provided customer review quotes, 6 five-star and 1 four-star
+  - New dark review section with swipeable cards on phones
+  - More natural alternate matched-view gutter photo comparison
+  - Carousel crossfade that prevents layout jumps
+  - Mobile menu slides downward to roughly half the screen
+  - Expanded desktop/mobile About Us copy
+
+QUOTES: The multi-step quote form opens the visitor's SMS application with a prepared message addressed to (503) 569-4291. It does NOT submit directly to a backend; the visitor has to press Send. This behavior should be replaced with a real lead-submission service before buying ads.
+
+VISUALS: Before/after images are illustrative examples, not verified photos of this company's completed jobs. The website section is labeled "Visual Examples" rather than displaying the longer paragraph from V8. Replace with actual documented work as soon as available.
+
+REVIEWS: Text and star ratings were provided by the site owner. Only publish testimonials from genuine customers with permission; the website itself does not verify review provenance.
+
+V9 self-tests: 1440 px desktop, 768 px tablet, 390 px mobile; JS console had no errors, no horizontal overflow, two carousels advance, form progresses and prepares an SMS request.

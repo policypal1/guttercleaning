@@ -4,7 +4,10 @@ const mobileMenu = document.getElementById('mobile-menu');
 function setMenu(open) {
   menuToggle.setAttribute('aria-expanded', String(open));
   menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  mobileMenu.hidden = !open;
+  mobileMenu.classList.toggle('is-open', open);
+  mobileMenu.setAttribute('aria-hidden', String(!open));
+  if (open) mobileMenu.removeAttribute('inert');
+  else mobileMenu.setAttribute('inert', '');
   document.body.classList.toggle('menu-open', open);
 }
 
@@ -155,7 +158,11 @@ document.addEventListener("click", event => { if (menuToggle?.getAttribute("aria
   let index = 0;
   function showComparison(i) {
     index = (i + slides.length) % slides.length;
-    slides.forEach((slide, j) => { slide.hidden = j !== index; slide.classList.toggle('is-active', j === index); });
+    slides.forEach((slide, j) => {
+      slide.removeAttribute('hidden');
+      slide.classList.toggle('is-active', j === index);
+      slide.setAttribute('aria-hidden', String(j !== index));
+    });
     dots.forEach((dot, j) => {
       dot.classList.toggle('is-active', j === index);
       if (j === index) dot.setAttribute('aria-current', 'true');
