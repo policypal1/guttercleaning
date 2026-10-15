@@ -221,3 +221,79 @@ document.addEventListener("click", event => { if (menuToggle?.getAttribute("aria
     });
   },{passive:true});
 })();
+
+
+/* V10 review carousel: arrow buttons, swipe, accessible dots and keyboard controls. */
+(function setupReviewsCarousel() {
+  const carousel = document.getElementById('reviews-carousel');
+  const track = document.getElementById('reviews-track');
+  const cards = track ? [...track.querySelectorAll('.review-card')] : [];
+  const prev = document.getElementById('reviews-prev');
+  const next = document.getElementById('reviews-next');
+  const dotsContainer = document.getElementById('reviews-dots');
+  const count = document.getElementById('reviews-count');
+  if (!carousel || !track || cards.length === 0 || !prev || !next || !dotsContainer || !count) return;
+
+  let current = 0;
+  let maximum = 0;
+  let frame = 0;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const gap = () => parseFloat(getComputedStyle(track).columnGap) || 0;
+  const cardStep = () => cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth + gap();
+  const scrollMax = () => Math.max(0, track.scrollWidth - track.clientWidth);
+
+  function refreshDots() {
+    dotsContainer.replaceChildren();
+    for (let i = 0; i <= maximum; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'review-dot';
+      dot.setAttribute('aria-label', `Show reviews starting at ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  function paint(index) {
+    current = Math.max(0, Math.min(index, maximum));
+    [...dotsContainer.children].forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === current);
+      if (i === current) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+    count.textContent = `${String(current + 1).padStart(2, '0')} / ${String(maximum + 1).padStart(2, '0')}`;
+  }
+  function goTo(index) {
+    const chosen = index < 0 ? maximum : index > maximum ? 0 : index;
+    paint(chosen);
+    const target = Math.min(scrollMax(), cardStep() * chosen);
+    track.scrollTo({ left: target, behavior: reduced.matches ? 'instant' : 'smooth' });
+  }
+  function measure() {
+    const step = cardStep();
+    // Maximum distinct starting positions; the last review is still fully readable.
+    const visible = Math.max(1, Math.round((track.clientWidth + gap()) / step));
+    maximum = Math.max(0, cards.length - visible);
+    refreshDots();
+    paint(Math.min(current, maximum));
+    track.scrollTo({ left: Math.min(scrollMax(), step * current), behavior: 'instant' });
+  }
+
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  carousel.addEventListener('keydown', event => {
+    if (event.target.closest('button')) return;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+      goTo(current + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => paint(Math.min(maximum, Math.round(track.scrollLeft / cardStep()))));
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(measure);
+  }, { passive: true });
+  measure();
+})();
