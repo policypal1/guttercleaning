@@ -1,24 +1,32 @@
-SALEM GUTTER PROS - Website V6
-================================
-All files are in the root folder (no assets/ directory).
+# Salem Gutter Pros website, Version 7
 
-To publish on GitHub Pages:
-1. Extract the ZIP.
-2. Upload all extracted files to the root of your repository (same level as index.html).
-3. Commit and enable GitHub Pages in Settings > Pages (deploy from branch).
-4. Replace older logo/favicon/photo files to avoid stale files in your repository.
+A static, responsive one-page website. No build process or dependency installation required.
 
-Main files:
-- index.html: page and SEO metadata
-- style.css: responsive styling
-- script.js: mobile menu and four-step quote form
-- logo-header.png: transparent light-on-dark logo for site header/footer
-- logo-dark.png: transparent dark-on-light version for white backgrounds
-- house-icon.png: standalone house/gutter symbol for general branding
-- favicon.png, favicon-64.png, apple-touch-icon.png: icons using the same mark
-- *.webp: hero, services, section and before/after images
+## Uploading
 
-IMPORTANT:
-- Quote form does not save/send directly to a backend. It opens a drafted SMS to 503-569-4291 and the customer MUST press Send.
-- Before-and-after photos are illustrative and not verified customer jobs. Replace with real paired photos when available.
-- Confirm insurance, legal operating requirements and labor rules before accepting gutter-cleaning jobs.
+1. Extract the ZIP file.
+2. Upload all included files into the root folder of your GitHub Pages repository or website host.
+3. Keep image files next to `index.html`, not inside an `assets` directory.
+4. Publish. Open the site on desktop and mobile to double-check your host's configuration.
+
+## Website files
+
+- `index.html` — sections, navigation, SEO metadata, quote form
+- `style.css` — layout, colors, sticky header, mobile styles
+- `script.js` — mobile menu and multi-step quote form
+- `logo-header.png` — full Salem Gutter Pros logo
+- `logo-dark.png` — alternate logo PNG for future light-background uses
+- `favicon.png`, `favicon-64.png`, `apple-touch-icon.png` — matching icon files
+- All other `.webp` files — local photographic imagery, including before/after examples
+
+## Important form note
+
+The quote form currently prepares an SMS addressed to (503) 569-4291. The customer must open Messages and press Send. The website does **not** automatically store or send leads. Connect an actual form backend/service before spending on ads if you want automatic lead collection.
+
+## Photos
+
+The sample before/after pictures are visual examples (two views of the same modeled gutter), not completed customer jobs. Replace with your own documented work when available; keep the same image filenames to avoid changing HTML.
+
+## Other launch tasks
+
+Confirm services you can safely and legally perform, business insurance, and any minor-employment requirements before accepting physical cleaning jobs.

@@ -140,3 +140,9 @@ copyRequest?.addEventListener('click', async () => {
 });
 
 showStep(0);
+
+// Footer year and keyboard dismissal of the responsive menu.
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
+document.addEventListener("keydown", event => { if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") { setMenu(false); menuToggle.focus(); } });
+document.addEventListener("click", event => { if (menuToggle?.getAttribute("aria-expanded") === "true" && !event.target.closest(".site-header")) setMenu(false); });
