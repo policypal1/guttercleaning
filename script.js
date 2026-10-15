@@ -16,8 +16,8 @@ document.getElementById('year').textContent = String(new Date().getFullYear());
 
 const form = document.getElementById('quote-form');
 const panels = Array.from(form.querySelectorAll('.quote-step'));
-const stepCount = document.getElementById('step-count');
-const progressBar = document.getElementById('quote-progress-fill');
+
+
 const result = document.getElementById('form-result');
 const resultStatus = document.getElementById('form-status');
 const summary = document.getElementById('request-summary');
@@ -30,8 +30,8 @@ function showStep(index, focus = false) {
   currentStep = Math.max(0, Math.min(panels.length - 1, index));
   panels.forEach((panel, i) => { panel.hidden = i !== currentStep; });
   result.hidden = true;
-  stepCount.textContent = `${String(currentStep + 1).padStart(2,'0')} / 04`;
-  progressBar.style.width = `${(currentStep + 1) * 25}%`;
+
+
   if (focus) {
     const h = panels[currentStep].querySelector('h4');
     if (h) { h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true}); }
@@ -91,8 +91,8 @@ form.addEventListener('submit', e => {
   summary.textContent = preparedMessage;
   result.hidden = false;
   panels.forEach(panel => { panel.hidden = true; });
-  stepCount.textContent = 'READY';
-  progressBar.style.width = '100%';
+
+
   copyRequest.textContent = 'Copy Request';
   resultStatus.textContent = 'Your details are prepared. Open your Messages app and press Send, or copy the request and text it to (503) 569-4291.';
   if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) window.location.href = url;
