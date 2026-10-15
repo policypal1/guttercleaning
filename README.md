@@ -1,11 +1,24 @@
-# Salem Gutter Pros — V4
+SALEM GUTTER PROS - Website V6
+================================
+All files are in the root folder (no assets/ directory).
 
-Upload all files from this ZIP into the same directory as index.html on your host or GitHub Pages. No assets subfolder or build step is needed.
+To publish on GitHub Pages:
+1. Extract the ZIP.
+2. Upload all extracted files to the root of your repository (same level as index.html).
+3. Commit and enable GitHub Pages in Settings > Pages (deploy from branch).
+4. Replace older logo/favicon/photo files to avoid stale files in your repository.
 
-Branding: logo-header.png is intended for dark backgrounds; logo-dark.png is for lighter backgrounds. favicon.png and favicon-64.png share the same house-and-gutter symbol.
+Main files:
+- index.html: page and SEO metadata
+- style.css: responsive styling
+- script.js: mobile menu and four-step quote form
+- logo-header.png: transparent light-on-dark logo for site header/footer
+- logo-dark.png: transparent dark-on-light version for white backgrounds
+- house-icon.png: standalone house/gutter symbol for general branding
+- favicon.png, favicon-64.png, apple-touch-icon.png: icons using the same mark
+- *.webp: hero, services, section and before/after images
 
-The website includes illustrative gutter imagery, including before/after examples. They are not verified client project photographs and must not be presented as real completed work. Replace images with your own after service begins.
-
-IMPORTANT: The quote flow is a client-only SMS draft. The prospective customer MUST press Send in their SMS app. The form does not automatically send or store leads. To capture leads from ad campaigns reliably, connect to a secure form service or backend first.
-
-Phone number: 503-569-4291. Update this in index.html and script.js if the business number changes. The copy refers to the business as student-run per owners' description; verify before publication.
+IMPORTANT:
+- Quote form does not save/send directly to a backend. It opens a drafted SMS to 503-569-4291 and the customer MUST press Send.
+- Before-and-after photos are illustrative and not verified customer jobs. Replace with real paired photos when available.
+- Confirm insurance, legal operating requirements and labor rules before accepting gutter-cleaning jobs.
